@@ -11,7 +11,7 @@
 
 An AI agent can create pages quickly. The hard part is creating a **connected, readable, governable knowledge system** instead of a pile of pages, files, duplicate links, and inconsistent tags.
 
-[The problem](#the-problem) · [How it works](#how-it-works) · [Agent adapters](#agent-adapters) · [Capabilities](#capabilities) · [Safety](#safety-boundaries)
+[The problem](#the-problem) · [How it works](#how-it-works) · [What's new](#whats-new-in-v110) · [Agent adapters](#agent-adapters) · [Capabilities](#capabilities) · [Safety](#safety-boundaries)
 
 ---
 
@@ -45,6 +45,16 @@ This repository gives an AI agent a durable operating contract for avoiding thos
 
 The result is an Anytype space that remains understandable when it grows, when multiple people edit it, and when different agents work in it.
 
+## What's new in v1.1.0
+
+This release makes discovery and editing safer before an agent writes anything:
+
+- **Capability-aware search** — use full-text search when the current API confirms it; use semantic search only when that capability exists and the request needs conceptual retrieval. A missing result never becomes proof that a page does not exist.
+- **Schema snapshots before mutation** — inspect the existing Type, global Properties, controlled options, and a representative Object before creating or changing data. The agent reuses established vocabulary instead of inventing parallel statuses or fields.
+- **Precise long-page edits** — locate one unique block or anchor, apply the smallest possible change, preserve surrounding content, and verify the exact result after the write.
+
+These additions extend the existing navigation, modeling, and safety rules; they do not introduce a new runtime, authentication flow, or hidden indexing service.
+
 ## Agent adapters
 
 | Environment | Entry point | Use it for |
@@ -68,6 +78,7 @@ Every adapter points to the same model and safety rules. An adapter does **not**
 | **Files and media** | Upload once as a File Object, reuse it safely, distinguish Bookmark vs Link vs Embed |
 | **Visual language** | Apply card styles, descriptions, icon visibility, covers, and sparse semantic color without visual noise |
 | **Automation safety** | Discover runtime schemas, use dry runs, handle conflicts, scope writes, and verify read-back |
+| **Retrieval and edits** | Search without creating duplicates, snapshot existing schema, and make minimal verified changes to long pages |
 | **Capability honesty** | Stop at an API/UI boundary instead of reporting a feature as changed when it was only readable |
 
 ## What is inside
@@ -79,7 +90,8 @@ anytype-agent-skill/
 │   └── references/
 │       ├── operating-model.md              # Objects, Types, Properties, media, Views
 │       ├── visual-navigation.md            # Cards, descriptions, icons, taxonomy
-│       └── api-safety.md                   # Discovery, mutation safety, verification
+│       ├── api-safety.md                   # Discovery, mutation safety, verification
+│       └── retrieval-and-precise-edits.md  # Search, schema snapshots, minimal edits
 ├── adapters/                               # Claude Code, Codex, AGENTS.md variants
 ├── assets/                                 # Repository illustrations
 ├── scripts/validate.py                     # Offline portability and privacy checks

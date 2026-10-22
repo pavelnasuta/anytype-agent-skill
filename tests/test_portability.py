@@ -37,6 +37,12 @@ class PortabilityTests(unittest.TestCase):
         ):
             self.assertIn(required_heading, text)
 
+    def test_readme_describes_current_skill_release(self) -> None:
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("## What's new in v1.1.0", readme)
+        for capability in ("schema snapshots", "Precise long-page edits", "semantic search"):
+            self.assertIn(capability, readme)
+
 
 if __name__ == "__main__":
     unittest.main()
