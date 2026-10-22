@@ -1,51 +1,117 @@
-# Anytype Agent Skill
+<div align="center">
 
-Portable operating rules for AI agents that build and maintain structured Anytype spaces.
+# 🧠 Anytype Agent Skill
 
-It helps an agent choose the right Anytype primitive—Object, Type, Property, Template, Query, Collection, View, Block, File, Bookmark, or Embed—then make verified changes without turning a knowledge space into a flat file dump.
+### A production operating model for AI agents that build reliable Anytype knowledge spaces.
 
-## What is included
+[![Status: Private preview](https://img.shields.io/badge/status-private_preview-475569?style=for-the-badge)](RELEASE_POLICY.md)
+[![Anytype](https://img.shields.io/badge/Anytype-knowledge_operations-7c3aed?style=for-the-badge)](https://anytype.io)
+[![Agents](https://img.shields.io/badge/agents-Hermes%20%7C%20Codex%20%7C%20Claude%20Code-0f766e?style=for-the-badge)](adapters/)
+[![Verification](https://img.shields.io/badge/verification-offline_tests-16a34a?style=for-the-badge)](tests/test_portability.py)
 
-- A canonical Hermes skill under `skills/anytype-knowledge-operations/`.
-- Portable instruction adapters for agents that use `AGENTS.md`, `CLAUDE.md`, or `CODEX.md`.
-- Rules for native card navigation, taxonomy, metadata, files, media, visual hierarchy, API safety, and audit checks.
-- A local portability validator with no network dependency.
+An AI agent can create pages quickly. The hard part is creating a **connected, readable, governable knowledge system** instead of a pile of pages, files, duplicate links, and inconsistent tags.
 
-## What it is not
+[The problem](#the-problem) · [How it works](#how-it-works) · [Agent adapters](#agent-adapters) · [Capabilities](#capabilities) · [Safety](#safety-boundaries)
 
-- A backup tool or a replacement for the source of record.
-- A generic import script.
-- Permission to move secrets, credentials, private keys, recovery phrases, or system logs into Anytype.
+---
 
-## Use with different agents
+</div>
 
-| Environment | Start here |
+<p align="center">
+  <img src="assets/anytype-agent-skill-map.svg" alt="AI agents use the skill to build verified Anytype knowledge spaces" width="900">
+</p>
+
+## The problem
+
+Most Anytype automation fails in predictable ways:
+
+- it imports content into the root instead of a navigable information architecture;
+- it creates plain URLs instead of native Object cards;
+- it treats Pages, Types, Properties, Queries, and Collections as interchangeable;
+- it copies the same file or Object instead of reusing it;
+- it buries dates, statuses, and tags in titles or table text, making them impossible to filter;
+- it modifies live Objects without checking the current model, permissions, or concurrent changes;
+- it claims a UI feature was changed even when the Local API cannot write it.
+
+This repository gives an AI agent a durable operating contract for avoiding those failures.
+
+## How it works
+
+1. **Discover** — inspect the target Space, Types, Properties, navigation, existing Objects, and capabilities before writing.
+2. **Model** — choose the right primitive before creating content: Page, Type, Property, Template, Query, Collection, View, Bookmark, File, or Embed.
+3. **Connect** — build visible hierarchy with native Object card links and semantic relationships with Object-properties.
+4. **Govern** — apply a controlled taxonomy, semantic dates, descriptions, icons, and intentionally sparse visual signals.
+5. **Verify** — use dry runs where available and read the exact target back after every external mutation.
+
+The result is an Anytype space that remains understandable when it grows, when multiple people edit it, and when different agents work in it.
+
+## Agent adapters
+
+| Environment | Entry point | Use it for |
+|---|---|---|
+| Hermes Agent | [`SKILL.md`](skills/anytype-knowledge-operations/SKILL.md) | Native skill loading and Local API workflows |
+| Codex and compatible coding agents | [`CODEX.md`](adapters/CODEX.md) | Repository or workspace instructions |
+| Claude Code | [`CLAUDE.md`](adapters/CLAUDE.md) | Claude Code project instructions |
+| Cursor, OpenCode, Cline, Windsurf and AGENTS.md-aware agents | [`AGENTS.md`](adapters/AGENTS.md) | General project-level agent contract |
+| Other AI software | [`AGENTS.md`](adapters/AGENTS.md) | Copy the portable contract into its instruction layer |
+
+Every adapter points to the same model and safety rules. An adapter does **not** imply that every UI action is programmable in every Anytype client or API version.
+
+## Capabilities
+
+| Area | What the agent learns to do |
 |---|---|
-| Hermes Agent | `skills/anytype-knowledge-operations/SKILL.md` |
-| Codex and compatible coding agents | `adapters/CODEX.md` |
-| Claude Code | `adapters/CLAUDE.md` |
-| Cursor, OpenCode, Cline, Windsurf and other AGENTS.md-aware tools | `adapters/AGENTS.md` |
-| Any other assistant | Copy the contract from `adapters/AGENTS.md` into its project instructions. |
+| **Information architecture** | Build Home → Area → Section → Material navigation without pretending Anytype is a strict folder tree |
+| **Native navigation** | Use real Object cards, visible icons, parent-page descriptions, and backlinks instead of flat URL lists |
+| **Data modeling** | Choose Types, Properties, Templates, Queries, Collections, and Views for their actual roles |
+| **Metadata governance** | Use Select, Multi-select, Dates, Object relations, tag vocabularies, and semantic names consistently |
+| **Files and media** | Upload once as a File Object, reuse it safely, distinguish Bookmark vs Link vs Embed |
+| **Visual language** | Apply card styles, descriptions, icon visibility, covers, and sparse semantic color without visual noise |
+| **Automation safety** | Discover runtime schemas, use dry runs, handle conflicts, scope writes, and verify read-back |
+| **Capability honesty** | Stop at an API/UI boundary instead of reporting a feature as changed when it was only readable |
 
-All adapters point to the same operating model. They should be treated as guidance for the agent, not as a claim that every Anytype UI action is available through every API.
+## What is inside
 
-## Core contract
+```text
+anytype-agent-skill/
+├── skills/anytype-knowledge-operations/   # Canonical Hermes skill
+│   ├── SKILL.md
+│   └── references/
+│       ├── operating-model.md              # Objects, Types, Properties, media, Views
+│       ├── visual-navigation.md            # Cards, descriptions, icons, taxonomy
+│       └── api-safety.md                   # Discovery, mutation safety, verification
+├── adapters/                               # Claude Code, Codex, AGENTS.md variants
+├── assets/                                 # Repository illustrations
+├── scripts/validate.py                     # Offline portability and privacy checks
+└── tests/test_portability.py               # Offline contract tests
+```
 
-1. Discover the target Space and existing model before writing.
-2. Choose the data model before importing or creating content.
-3. Use native Object cards for visible navigation; use Object-properties for semantic relationships.
-4. Reuse files and Objects instead of copying them.
-5. Apply governed metadata and semantic dates.
-6. Validate every external change by reading the exact target back.
-7. Stop rather than simulate a UI or API capability that is unavailable.
+## Safety boundaries
 
-## Validation
+This is not an import-everything tool. It explicitly excludes:
+
+- passwords, recovery phrases, private keys, API tokens, credentials, and system logs;
+- unreviewed mass deletion, archiving, permission changes, or model migrations;
+- unverified assumptions about Anytype UI or API capabilities;
+- copying data merely to represent the same Object in another context.
+
+For a sensitive or large import, an agent must first inventory the source, propose a target branch, import a small reversible batch, then verify counts and links.
+
+## Verify the package
 
 ```bash
 python3 scripts/validate.py
 python3 -m unittest tests/test_portability.py
 ```
 
-## Status
+The checks run offline. They ensure the adapter files exist, the Hermes skill has valid frontmatter, and the package contains no machine-local paths, live access values, or private workspace identifiers.
 
-This repository is private while the cross-agent adapters and examples are refined. It contains only portable guidance and synthetic examples.
+## Anytype
+
+Built for [Anytype](https://anytype.io) and its object-first, local-first knowledge model. The repository is tagged `anytype` so it is discoverable alongside the surrounding agent and knowledge-management ecosystem.
+
+## Status and release policy
+
+The repository is intentionally private while the adapters, examples, and installation paths are refined. It contains only portable guidance and synthetic examples.
+
+A public release requires a separate review of attribution, license, examples, support expectations, and clean-install behavior. See [RELEASE_POLICY.md](RELEASE_POLICY.md).

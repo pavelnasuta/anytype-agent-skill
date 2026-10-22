@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="660" viewBox="0 0 1200 660" role="img" aria-labelledby="title desc">
+  <title id="title">Anytype Agent Skill map</title>
+  <desc id="desc">AI agents use a shared operating model to build a verified connected Anytype knowledge space.</desc>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#1e293b" stroke-width="1"/></pattern>
+    <linearGradient id="skill" x1="0" x2="1"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#06b6d4"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0L9 3L0 6Z" fill="#64748b"/></marker>
+  </defs>
+  <rect width="1200" height="660" fill="#020617"/>
+  <rect width="1200" height="660" fill="url(#grid)" opacity=".78"/>
+  <text x="70" y="72" fill="#e2e8f0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" font-weight="700">ANYTYPE AGENT SKILL</text>
+  <text x="70" y="103" fill="#94a3b8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14">portable contract for safe, connected knowledge operations</text>
+
+  <path d="M310 262H430" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M720 262H842" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M590 400V470" stroke="#34d399" stroke-width="3" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+
+  <g transform="translate(70 180)">
+    <rect width="240" height="170" rx="16" fill="#0f172a" stroke="#22d3ee" stroke-width="2"/>
+    <circle cx="30" cy="31" r="8" fill="#22d3ee" filter="url(#glow)"/>
+    <text x="52" y="36" fill="#e2e8f0" font-family="ui-monospace,monospace" font-size="18" font-weight="700">AI AGENTS</text>
+    <text x="25" y="76" fill="#94a3b8" font-family="ui-monospace,monospace" font-size="14">Hermes Agent</text>
+    <text x="25" y="104" fill="#94a3b8" font-family="ui-monospace,monospace" font-size="14">Codex · Claude Code</text>
+    <text x="25" y="132" fill="#94a3b8" font-family="ui-monospace,monospace" font-size="14">AGENTS.md tools</text>
+  </g>
+
+  <g transform="translate(430 150)">
+    <rect width="290" height="230" rx="18" fill="#0f172a" stroke="url(#skill)" stroke-width="3"/>
+    <circle cx="35" cy="38" r="12" fill="#8b5cf6" filter="url(#glow)"/>
+    <text x="60" y="45" fill="#f8fafc" font-family="ui-monospace,monospace" font-size="20" font-weight="700">OPERATING MODEL</text>
+    <g fill="#c4b5fd" font-family="ui-monospace,monospace" font-size="14">
+      <text x="30" y="88">01  Discover</text><text x="30" y="116">02  Model</text>
+      <text x="30" y="144">03  Connect</text><text x="30" y="172">04  Govern</text>
+      <text x="30" y="200">05  Verify</text>
+    </g>
+  </g>
+
+  <g transform="translate(842 150)">
+    <rect width="290" height="230" rx="18" fill="#0f172a" stroke="#34d399" stroke-width="2"/>
+    <circle cx="35" cy="38" r="12" fill="#34d399" filter="url(#glow)"/>
+    <text x="60" y="45" fill="#f8fafc" font-family="ui-monospace,monospace" font-size="20" font-weight="700">ANYTYPE SPACE</text>
+    <g font-family="ui-monospace,monospace" font-size="14">
+      <rect x="26" y="72" width="238" height="34" rx="7" fill="#134e4a"/><text x="41" y="94" fill="#ccfbf1">Home · Areas · Navigation</text>
+      <rect x="26" y="116" width="238" height="34" rx="7" fill="#1e3a5f"/><text x="41" y="138" fill="#dbeafe">Objects · Properties · Types</text>
+      <rect x="26" y="160" width="238" height="34" rx="7" fill="#3b1767"/><text x="41" y="182" fill="#ede9fe">Queries · Files · Bookmarks</text>
+    </g>
+  </g>
+
+  <g transform="translate(350 470)">
+    <rect width="480" height="104" rx="16" fill="#052e2b" stroke="#34d399" stroke-width="2"/>
+    <circle cx="33" cy="34" r="9" fill="#34d399"/>
+    <text x="57" y="40" fill="#ecfdf5" font-family="ui-monospace,monospace" font-size="18" font-weight="700">VERIFIED CHANGE</text>
+    <text x="28" y="73" fill="#a7f3d0" font-family="ui-monospace,monospace" font-size="14">dry run → atomic write → exact read-back</text>
+  </g>
+
+  <text x="70" y="620" fill="#64748b" font-family="ui-monospace,monospace" font-size="13">object-first • reusable • governed • capability-honest</text>
+</svg>
