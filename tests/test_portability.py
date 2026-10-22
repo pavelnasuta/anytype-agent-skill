@@ -25,6 +25,18 @@ class PortabilityTests(unittest.TestCase):
             text = (ROOT / "adapters" / name).read_text(encoding="utf-8")
             self.assertIn("anytype-knowledge-operations", text)
 
+    def test_retrieval_and_precise_edits_reference_is_present(self) -> None:
+        reference = ROOT / "skills" / "anytype-knowledge-operations" / "references" / "retrieval-and-precise-edits.md"
+        self.assertTrue(reference.is_file())
+        text = reference.read_text(encoding="utf-8")
+        for required_heading in (
+            "## Search before writing",
+            "## Schema snapshot before mutation",
+            "## Precise editing of long pages",
+            "exact read-back",
+        ):
+            self.assertIn(required_heading, text)
+
 
 if __name__ == "__main__":
     unittest.main()

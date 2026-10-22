@@ -15,6 +15,7 @@ Every useful item in Anytype is an Object. A Page, Task, Bookmark, Image, PDF, a
 | Query | A result set that should update automatically from rules |
 | Collection | A manually curated, mixed set without one durable rule |
 | View | A filter, sort, layout, or grouping over existing Objects |
+| Search | Read-only discovery of relevant Objects before creating or editing |
 | Bookmark | A web source that should retain title, preview, tags, and links |
 | File Object | An image, video, audio, PDF, or attachment that can be reused |
 

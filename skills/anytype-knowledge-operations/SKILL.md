@@ -1,7 +1,7 @@
 ---
 name: anytype-knowledge-operations
 description: Build verified, structured knowledge spaces in Anytype.
-version: 1.0.0
+version: 1.1.0
 author: Pavel Nasuta, Hermes Agent
 license: Private
 platforms: [linux, macos, windows]
@@ -52,6 +52,7 @@ Use this skill to create, organize, import, audit, or automate an Anytype space.
 - `references/operating-model.md` — Objects, Types, Properties, Templates, Queries, Collections, Views, files, media, and embeds.
 - `references/visual-navigation.md` — parent pages, card links, icons, descriptions, covers, and visual taxonomy.
 - `references/api-safety.md` — discovery, dry runs, concurrency, and verification.
+- `references/retrieval-and-precise-edits.md` — full-text/semantic discovery, schema snapshots, and minimal long-page edits.
 
 ## User Report
 

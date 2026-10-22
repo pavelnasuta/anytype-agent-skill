@@ -10,7 +10,7 @@ Confirm the target Space, current role, existing Objects, Types, Properties, nav
 - Read the target Object immediately before PATCH.
 - Use the server-returned block IDs exactly as returned.
 - Use an idempotency key for repeatable mutations.
-- Use concurrency preconditions when the API provides them.
+- Use an available concurrency precondition for every mutation of an existing resource.
 - Batch related edits atomically where the API supports it.
 - Read the exact target back after every mutation.
 
